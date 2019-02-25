@@ -12,7 +12,24 @@ namespace Casus_Circustrein_V2
 
         public override bool IsCompatible(Wagon wagon)
         {
-            throw new NotImplementedException();
+            if (wagon.Animals == null)
+            {
+                return true;
+            } else
+            {
+                foreach (Animal animal in wagon.Animals)
+                {
+                    if (animal.Size <= Size)
+                    {
+                        return false;
+                    } else if (animal is Carnivore && animal.Size > Size)
+                    {
+                        return false;
+                    }
+            }
+            }
+            return true;
+           
         }
     }
 }
